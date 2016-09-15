@@ -71,6 +71,7 @@ class dspace(
   $admin_passwd       = undef,
   $admin_language     = undef,
   $handle_prefix      = '123456789',
+  $custom_registry_file = undef,
 )
 {
     # Default to requiring all packages be installed

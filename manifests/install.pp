@@ -51,6 +51,7 @@ define dspace::install ($owner             = $dspace::owner,
                         $db_user           = $dspace::db_owner,
                         $db_passwd         = $dspace::db_owner_passwd,
                         $handle_prefix     = $dspace::handle_prefix,
+                        $custom_registry_file = $dspace::custom_registry_file,
                         $ensure            = present)
 {
     # Full path to Ant Installer (based on passed in $src_dir)

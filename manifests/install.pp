@@ -158,7 +158,7 @@ define dspace::install ($owner             = $dspace::owner,
    # Install only-one local registry-file passed as parameter, and that differs to local-types.xml
    if $custom_registry_file
    {
-      exec {
+      exec { "Load Custom Registry File"
          command     => "${install_dir}/bin/dspace registry-loader -metadata ${custom_registry_file}",
          cwd         => $install_dir,
          user        => $owner,

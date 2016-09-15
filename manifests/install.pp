@@ -24,6 +24,7 @@
 # - $admin_language     => Language of the created default DSpace Administrator account.
 # - $handle_prefix      => Handle Prefix to use for this site (default = 123456789)
 # - $ensure => Whether to ensure DSpace instance is created ('present', default value) or deleted ('absent')
+# - $custom_registry_file  => A registry filename (example: custom-registry.xml) that is not loaded as default by DSpace.
 #
 # Sample Usage:
 # dspace::install { '/dspace':
@@ -152,6 +153,19 @@ define dspace::install ($owner             = $dspace::owner,
      logoutput => true,    # Send stdout to puppet log file (if any)
    }
 
+    
+   # Install only-one local registry-file passed as parameter, and that differs to local-types.xml
+   if $custom_registry_file
+   {
+      exec {
+         command     => "${install_dir}/bin/dspace registry-loader -metadata ${custom_registry_file}",
+         cwd         => $install_dir,
+         user        => $owner,
+         logoutput   => true,
+      }
+   }
+   
+   
    # Create initial administrator (if specified)
    if $admin_email and $admin_passwd and $admin_firstname and $admin_lastname and $admin_language
    {

@@ -159,7 +159,7 @@ define dspace::install ($owner             = $dspace::owner,
    if $custom_registry_file
    {
       exec { "Load Custom Registry File":
-         command     => "${install_dir}/bin/dspace registry-loader -metadata ${custom_registry_file}",
+         command     => "${install_dir}/bin/dspace registry-loader -metadata ${install_dir}/config/registries/${custom_registry_file}",
          cwd         => $install_dir,
          user        => $owner,
          logoutput   => true,

@@ -163,6 +163,7 @@ define dspace::install ($owner             = $dspace::owner,
          cwd         => $install_dir,
          user        => $owner,
          logoutput   => true,
+         require   => Exec["Install DSpace to ${install_dir}"],
       }
    }
    
@@ -175,7 +176,7 @@ define dspace::install ($owner             = $dspace::owner,
        cwd       => $install_dir,
        user      => $owner,
        logoutput => true,
-       require   => Exec["Install DSpace to ${install_dir}"],
+       require   => Exec["Load Custom Registry File"],
      }
    }
 
